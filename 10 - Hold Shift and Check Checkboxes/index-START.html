@@ -98,7 +98,34 @@
     </div>
   </div>
 
-<script>
-</script>
+  <script>
+    let lastSelected = null;
+    const boxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+    
+    function findLastSelected(e) {
+
+      let inBetween = false;
+
+      boxes.forEach(box => {
+
+        if(e.shiftKey && this.checked) {
+          
+          if(box === this || box === lastSelected) {
+            inBetween = !inBetween;
+          }
+
+          if(inBetween) {
+            box.checked = true;
+          }
+        }
+
+      })
+
+      lastSelected = this; 
+    }
+
+    boxes.forEach(box => box.addEventListener('click', findLastSelected));
+
+  </script>
 </body>
 </html>
